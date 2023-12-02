@@ -54,6 +54,12 @@ const SignInForm = () => {
     return (
         <CustomContainer>
             <Center>
+                <Box  style={{border:'2px solid red',fontSize:'20px',padding:5,margin:5,lineHeight:'0px'}} >
+                    <p style={{textAlign:'center'}}>Admin Login</p>
+                    <h5>Email: brandtime@blondmail.com</h5>
+                    <h5>Password: @FSDff!4456#</h5>
+                    
+                </Box>
                 <Typography variant="h3" mb={3}>
                     Sign in to your account
                 </Typography>
@@ -71,7 +77,6 @@ const SignInForm = () => {
                                         helperText={errors.email?.message}
                                     />
                                 </FormControl>
-
                                 <FormControl>
                                     <InputLabel htmlFor="password">Password</InputLabel>
                                     <OutlinedInput
