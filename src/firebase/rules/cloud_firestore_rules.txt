@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+  	//is Authenticated
+  	function isSignedIn() {
+       return request.auth != null;
+ 	  }
+  
+  	//check if ADMIN role
+  	function isAdmin(userID) {
+ 			return get(/databases/$(database)/documents/users/$(userID)).data.role == "ADMIN";
+ 	  }
+    
+    //check if USER role
+  	function isUser(userID) {
+ 			return get(/databases/$(database)/documents/users/$(userID)).data.role == "USER";
+ 	  }
+    
+    //users collection rules
+  	match /users/{userId} {
+    	allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin(request.auth.uid));
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && request.auth.uid == userId; 
+      allow delete: if false;
+    }
+   
+    //products collection rules
+  	match /products/{product} {
+    	allow read: if true;
+      allow create, delete: if isSignedIn() && isAdmin(request.auth.uid);
+      allow update: if isSignedIn() && isAdmin(request.auth.uid) || (isUser(request.auth.uid) && request.resource.data.keys().hasAny(['remainingQty']));
+    }
+    
+    //brands collection rules
+  	match /brands/{brand} {
+    	allow read: if true;
+      allow create, update, delete: if isSignedIn() && isAdmin(request.auth.uid);
+    }
+    
+    //orders collection rules
+  	match /orders/{order} {
+    	allow read: if isSignedIn() && (request.auth.uid == resource.data.userID || isAdmin(request.auth.uid));
+      allow create: if isSignedIn() && isUser(request.auth.uid);
+      allow update: if isSignedIn() && isAdmin(request.auth.uid) && request.resource.data.keys().hasAny(['orderStatus']);
+      allow delete: if false;
+    }
+    
+  }
+}

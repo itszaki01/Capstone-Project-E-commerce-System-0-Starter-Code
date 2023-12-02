@@ -1,0 +1,30 @@
+
+.carousel {
+  box-sizing: border-box;
+}
+
+.carousel .thumb {
+  border: 0;
+  height: 5rem;
+}
+
+.carousel .thumbs-wrapper {
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.carousel .thumb.selected,
+.carousel .thumb:hover {
+  background-color: #fb8a003f;
+  mix-blend-mode: lighten;
+  border: 3px solid #faa032;
+}
+
+.carousel .thumb.selected {
+  filter: brightness(1.1);
+}
+
+.carousel .thumb:hover {
+  filter: brightness(0.9);
+}
