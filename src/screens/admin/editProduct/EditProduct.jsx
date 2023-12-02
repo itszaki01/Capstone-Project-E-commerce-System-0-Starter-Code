@@ -14,7 +14,7 @@ const EditProduct = () => {
     const navigate = useNavigate()
     const onSubmitForm = async (productData) => {
         try {
-            await editProduct({ productData, product }).unwrap()
+            // await editProduct({ productData, product }).unwrap()
             navigate(ADMIN_PRODUCTS)
             toast.success('Product Updated Successfuly')
         } catch (error) {

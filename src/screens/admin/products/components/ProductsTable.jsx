@@ -107,10 +107,11 @@ const ProductsTable = ({ isLoading, data }) => {
         }).then(async (result) => {
             try {
                 if (result.isConfirmed) {
-                    await deleteProduct(product).unwrap();
+                    //Disable Delete
+                    // await deleteProduct(product).unwrap(); 
                     Swal.fire({
                         title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        text: "(Test Mod) Product Deleted.",
                         icon: "success",
                     });
                 }

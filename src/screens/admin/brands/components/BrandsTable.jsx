@@ -22,7 +22,7 @@ const BrandsTable = ({ isLoading, data, handleDialogOpen }) => {
     );
     async function handleDeleteBrandClick(id) {
        try {
-          await deleteBrand(id).unwrap()
+        //   await deleteBrand(id).unwrap()
           toast.success('Brande Deleted Successfuly')
         } catch (error) {
           toast.error(error.message)
@@ -32,7 +32,7 @@ const BrandsTable = ({ isLoading, data, handleDialogOpen }) => {
     async function handleEditRowSave({row,values,exitEditingMode}) {
 
       try {
-         await editeBrand({name:values.name,id:row.original.id}).unwrap()
+        //  await editeBrand({name:values.name,id:row.original.id}).unwrap()
          toast.success('Brande Updated Successfuly')
          exitEditingMode()
        } catch (error) {
