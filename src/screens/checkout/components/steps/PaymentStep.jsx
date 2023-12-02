@@ -35,7 +35,7 @@ const PaymentStep = () => {
         dispatch(setCartItems(cartItems));
 
         axios
-            .post("http://localhost:4242/create-payment-intent", {
+            .post("https://proud-culottes-lamb.cyclic.app/create-payment-intent", {
                 items: cartItems,
                 userEmail: userProfile.email,
                 shipping: {
